@@ -13,8 +13,13 @@
     tools:showIn="@layout/activity_main"
     tools:context="vanhacks_index5.safetybutton.MainActivity">
 
-    <TextView
-        android:text="Hello World!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:text="send"
+        android:textSize="30sp"
+        android:background="#334d8e"
+        android:id="@+id/button"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
