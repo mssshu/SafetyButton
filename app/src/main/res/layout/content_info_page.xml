@@ -108,7 +108,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Partner:"
+            android:text="Partner&apos;s Name:"
             android:id="@+id/partner"
             android:layout_row="6"
             android:layout_column="0" />
@@ -116,7 +116,7 @@
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/partnerEdit"
+            android:id="@+id/partnerNameEdit"
             android:layout_gravity="end"
             android:layout_row="6"
             android:layout_column="1" />
@@ -124,14 +124,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Children Names:"
-            android:id="@+id/children"
+            android:id="@+id/Part"
             android:layout_row="7"
             android:layout_column="0" />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/childrenEdit"
+            android:id="@+id/childrenNameEdit"
             android:layout_gravity="end"
             android:layout_row="7"
             android:layout_column="1" />
@@ -146,40 +146,11 @@
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/legalEdit"
+            android:id="@+id/legalOrdersEdit"
             android:layout_gravity="end"
             android:layout_row="8"
             android:layout_column="1" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Threats?:"
-            android:id="@+id/threats"
-            android:layout_row="9"
-            android:layout_column="0" />
 
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/threatsEdit"
-            android:layout_gravity="end"
-            android:layout_row="9"
-            android:layout_column="1" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Weapons available:"
-            android:id="@+id/weapons"
-            android:layout_row="10"
-            android:layout_column="0" />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/weaponsEdit"
-            android:layout_gravity="end"
-            android:layout_row="10"
-            android:layout_column="1" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
