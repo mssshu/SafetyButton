@@ -99,5 +99,6 @@ public class MqttConnection {
         System.out.println("GPS Message published");
         return true;
     }
+    
 
 }
