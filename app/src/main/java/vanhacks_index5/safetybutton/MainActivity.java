@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity
     private String LOG_TAG = MainActivity.class.getSimpleName();
 
     protected GoogleApiClient mGoogleApiClient;
-    private Button b;
+    public static Button b;
 
     private static final String TAG = "MainActivity";
     private static MqttConnection mqttConnection;
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
 
     private String lat = "none";
     private String lng = "none2";
+    private String thisUserID = null;
 
     public Location mLastLocation;
 
@@ -86,11 +87,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 if (!isNetworkConnected()) {
-                    sendSMS("6044499444", "Please call 911");
+                    sendSMS("6044499444", thisUserID + "|EmergencyChannel");
                     b.setText("Emergency Mode Is On");
                 } else {
                     System.out.println("Connection exists");
-                    String thisUserID = preferencesManager.getUserID();
+                    thisUserID = preferencesManager.getUserID();
                     String thisNumber = preferencesManager.getNumber();
                     String thisName = preferencesManager.getName();
                     SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -101,8 +102,8 @@ public class MainActivity extends AppCompatActivity
                     String location = thisUserID + "|" + lat + "|" + lng;
                     mqttConnection.publishGPS(location);
                     new PostTask().execute();
-                    b.setEnabled(false);
                 }
+                b.setEnabled(false);
             }
         });
     }
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient
         );
-        if (mLastLocation != null){
+        if (mLastLocation != null) {
             lat = String.valueOf(mLastLocation.getLatitude());
             lng = String.valueOf(mLastLocation.getLongitude());
         }

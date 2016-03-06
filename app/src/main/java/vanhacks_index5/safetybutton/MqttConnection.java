@@ -5,7 +5,9 @@ import android.util.Log;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -13,7 +15,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 /**
  * Created by Luda on 2016-03-05.
  */
-public class MqttConnection {
+public class MqttConnection implements MqttCallback {
 
     private static MqttConnection mInstance;
     private static MqttAndroidClient client;
@@ -46,6 +48,7 @@ public class MqttConnection {
                 "tcp://kbme.ca:1883",
                 clientId
         );
+        client.setCallback(this);
 
         try {
             IMqttToken token = client.connect();
@@ -54,6 +57,11 @@ public class MqttConnection {
                 public void onSuccess(IMqttToken asyncActionToken) {
                     // We are connected
                     Log.d(TAG, "onSuccess");
+                    try {
+                        client.subscribe("ResolvedChannel", 0);
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override
@@ -84,6 +92,7 @@ public class MqttConnection {
     /**
      * Takes in a string like "UserID|long|lat"
      * example: "35|23.567778767|45.84859693"
+     *
      * @param gpsContent
      * @return
      */
@@ -99,6 +108,24 @@ public class MqttConnection {
         System.out.println("GPS Message published");
         return true;
     }
-    
 
+    @Override
+    public void connectionLost(Throwable throwable) {
+
+    }
+
+    @Override
+    public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
+        System.out.println(mqttMessage.toString());
+        String[] messageArray = mqttMessage.toString().split("\\|");
+        if (messageArray[0].equals(PreferencesManager.getInstance().getUserID())) {
+            System.out.println("This device has been resolved.");
+            MainActivity.b.setEnabled(true);
+        }
+    }
+
+    @Override
+    public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
+
+    }
 }
