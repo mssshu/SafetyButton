@@ -33,12 +33,17 @@ public class InfoPage extends AppCompatActivity {
     public EditText weapons;
     public EditText threats;
 
+    private static PreferencesManager preferencesManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        PreferencesManager.initializeInstance(getApplicationContext());
+        preferencesManager = PreferencesManager.getInstance();
 
         nameEdit = (EditText) findViewById(R.id.nameEdit);
         homeAddressEdit = (EditText) findViewById(R.id.homeAddressEdit);
@@ -87,7 +92,7 @@ public class InfoPage extends AppCompatActivity {
 
     public void run() throws Exception {
         RequestBody formBody = new FormBody.Builder()
-                .add("User_ID", PreferencesManager.getInstance().getUserID())
+                .add("User_ID", preferencesManager.getUserID())
                 .add("Name", nameEdit.getText().toString())
                 .add("Home_Address", homeAddressEdit.getText().toString())
                 .add("Work_Address", workAddressEdit.getText().toString())
@@ -105,7 +110,7 @@ public class InfoPage extends AppCompatActivity {
 
 
         Request request = new Request.Builder()
-                .url("http://199.116.240.37/api/userinfos?token=" + PreferencesManager.getInstance().getToken())
+                .url("http://199.116.240.37/api/userinfos?token=" + preferencesManager.getToken())
                 .post(formBody)
                 .build();
 
