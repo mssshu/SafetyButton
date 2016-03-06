@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private Button b;
 
+    private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +26,16 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         b = (Button) findViewById(R.id.button);
-        
+
+        PreferencesManager.initializeInstance(getApplicationContext());
+        PreferencesManager preferencesManager = PreferencesManager.getInstance();
+        if (preferencesManager.getToken().equals("")) {
+            Log.v(TAG, "No token, directing to Login.");
+            Intent intent = new Intent(this, LogIn.class);
+            startActivity(intent);
+        } else {
+            Log.v(TAG, "Token found.");
+        }
     }
 
     private void sendSMS(String phoneNumber, String message) {
@@ -33,9 +45,7 @@ public class MainActivity extends AppCompatActivity {
             SmsManager sms = SmsManager.getDefault();
             sms.sendTextMessage(phoneNumber, null, message, null, null);
             Toast.makeText(getApplicationContext(), "SMS sent.", Toast.LENGTH_LONG).show();
-        }
-
-        catch (Exception e) {
+        } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "SMS faild, please try again.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
@@ -58,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            final Intent i = new Intent(this,InfoPage.class);
+            final Intent i = new Intent(this, InfoPage.class);
 
             startActivity(i);
 
