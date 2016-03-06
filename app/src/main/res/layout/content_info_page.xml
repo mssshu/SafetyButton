@@ -11,13 +11,14 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="vanhacks_index5.safetybutton.InfoPage"
     tools:showIn="@layout/activity_info_page">
-    <GridLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="20"
-        android:stretchColumns="*"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="56dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,202 +27,193 @@
             android:layout_columnSpan="2"
             android:layout_gravity="center"
             android:id="@+id/header" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name:"
-        android:id="@+id/name"
-        android:layout_row="1"
-        android:layout_column="0" />
-
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/nameEdit"
-        android:layout_gravity="end"
-        android:layout_row="1"
-        android:layout_column="1" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Home Address:"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/nameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/homeAddress"
-            android:layout_row="2"
-            android:layout_column="0" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/homeAddressEdit"
-            android:layout_gravity="end"
-            android:layout_row="2"
-            android:layout_column="1" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Work Address:"
+            <EditText
+                android:id="@+id/homeAddressEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Home Address"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/workAddress"
-            android:layout_row="3"
-            android:layout_column="0" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/workAddressEdit"
-            android:layout_gravity="end"
-            android:layout_row="3"
-            android:layout_column="1" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Partner's Home Address:"
+            <EditText
+                android:id="@+id/workAddressEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Comments"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/partnerHomeAddress"
-            android:layout_row="4"
-            android:layout_column="0" />
-
-        <EditText
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/partnerHomeAddressEdit"
-            android:layout_gravity="end"
-            android:layout_row="4"
-            android:layout_column="1" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Partner's Work Address:"
+            <EditText
+                android:id="@+id/partnerHomeAddressEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Partner's Home Address"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/partnerWorkAddress"
-            android:layout_row="5"
-            android:layout_column="0" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/partnerWorkAddressEdit"
-            android:layout_gravity="end"
-            android:layout_row="5"
-            android:layout_column="1" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Partner&apos;s Name:"
+            <EditText
+                android:id="@+id/partnerWorkAddressEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Partner's Work Address"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/partner"
-            android:layout_row="6"
-            android:layout_column="0" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
-        <EditText
-            android:layout_width="200dp"
+            <EditText
+                android:id="@+id/partnerEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Partner's Name"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/children"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/partnerNameEdit"
-            android:layout_gravity="end"
-            android:layout_row="6"
-            android:layout_column="1" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Children Names:"
-            android:id="@+id/Part"
-            android:layout_row="7"
-            android:layout_column="0" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
-        <EditText
-            android:layout_width="200dp"
+            <EditText
+                android:id="@+id/childrenEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Children Names"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/legalOrders"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/childrenNameEdit"
-            android:layout_gravity="end"
-            android:layout_row="7"
-            android:layout_column="1" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Legal Orders:"
-            android:id="@+id/legal"
-            android:layout_row="8"
-            android:layout_column="0" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/legalOrdersEdit"
-            android:layout_gravity="end"
-            android:layout_row="8"
-            android:layout_column="1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="License Plate #:"
+            <EditText
+                android:id="@+id/legalOrdersEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Legal Order Numbers"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/plate"
-            android:layout_row="11"
-            android:layout_column="0" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/plateEdit"
-            android:layout_gravity="end"
-            android:layout_row="11"
-            android:layout_column="1" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Partner's Plate #:"
+            <EditText
+                android:id="@+id/plateEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="License Plate Number"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/partnerPlate"
-            android:layout_row="12"
-            android:layout_column="0" />
-        <EditText
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/partnerPlateEdit"
-            android:layout_gravity="end"
-            android:layout_row="12"
-            android:layout_column="1" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Weapons:"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/partnerPlateEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Partner's License Plate Number"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/weapons"
-            android:layout_row="13"
-            android:layout_column="0" />
-        <EditText
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/weaponsEdit"
-            android:layout_gravity="end"
-            android:layout_row="13"
-            android:layout_column="1" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Threats:"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/weaponsEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Weapons:"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/threats"
-            android:layout_row="14"
-            android:layout_column="0" />
-        <EditText
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/threatsEdit"
-            android:layout_gravity="end"
-            android:layout_row="14"
-            android:layout_column="1" />
-        <TextView
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/threatsEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Threats Made"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/commentEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Comments"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Comments:"
-            android:id="@+id/comment"
-            android:layout_row="15"
-            android:layout_column="0" />
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:id="@+id/commentEdit"
-            android:layout_gravity="end"
-            android:layout_row="15"
-            android:layout_column="1" />
+            android:orientation="horizontal">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -230,18 +222,16 @@
             android:text="Enter"
             android:color="#000000"
             android:id="@+id/infoButton"
-            android:layout_gravity="end"
-            android:layout_row="16"
-            android:layout_column="1" />
+            android:layout_gravity="end" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#5cafc8"
             android:color="#000000"
+            android:layout_gravity="end"
             android:text="Cancel"
             android:onClick="onClick"
-            android:id="@+id/cancel"
-            android:layout_row="16"
-            android:layout_column="0" />
-    </GridLayout>
+            android:id="@+id/cancel" />
+        </LinearLayout>
+    </LinearLayout>
 </ScrollView>

@@ -30,8 +30,8 @@ public class InfoPage extends AppCompatActivity {
     public EditText plateEdit;
     public EditText partnerPlateEdit;
     public EditText commentEdit;
-
-    PreferencesManager pm;
+    public EditText weapons;
+    public EditText threats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +45,14 @@ public class InfoPage extends AppCompatActivity {
         workAddressEdit = (EditText) findViewById(R.id.workAddressEdit);
         partnerHomeAddressEdit = (EditText) findViewById(R.id.partnerHomeAddressEdit);
         partnerWorkAddressEdit = (EditText) findViewById(R.id.partnerWorkAddressEdit);
-        partnerNameEdit = (EditText) findViewById(R.id.partnerNameEdit);
-        childrenNameEdit = (EditText) findViewById(R.id.childrenNameEdit);
+        partnerNameEdit = (EditText) findViewById(R.id.partnerEdit);
+        childrenNameEdit = (EditText) findViewById(R.id.childrenEdit);
         legalOrdersEdit = (EditText) findViewById(R.id.legalOrdersEdit);
         plateEdit = (EditText) findViewById(R.id.plateEdit);
         partnerPlateEdit = (EditText) findViewById(R.id.partnerPlateEdit);
         commentEdit = (EditText) findViewById(R.id.commentEdit);
+        weapons = (EditText) findViewById(R.id.weaponsEdit);
+        threats = (EditText) findViewById(R.id.threatsEdit);
     }
 
     public void onClick(View v) {
@@ -96,6 +98,8 @@ public class InfoPage extends AppCompatActivity {
                 .add("ChildrenNames", childrenNameEdit.getText().toString())
                 .add("Legal_Orders", legalOrdersEdit.getText().toString())
                 .add("License_Plate", plateEdit.getText().toString())
+                .add("Threats", threats.getText().toString())
+                .add("Weapons", weapons.getText().toString())
                 .add("Other", commentEdit.getText().toString())
                 .build();
 
