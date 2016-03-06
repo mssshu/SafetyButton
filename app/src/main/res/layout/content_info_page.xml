@@ -183,35 +183,65 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Weapons:"
+            android:id="@+id/weapons"
+            android:layout_row="13"
+            android:layout_column="0" />
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/weaponsEdit"
+            android:layout_gravity="end"
+            android:layout_row="13"
+            android:layout_column="1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Threats:"
+            android:id="@+id/threats"
+            android:layout_row="14"
+            android:layout_column="0" />
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/threatsEdit"
+            android:layout_gravity="end"
+            android:layout_row="14"
+            android:layout_column="1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Comments:"
             android:id="@+id/comment"
-            android:layout_row="13"
+            android:layout_row="15"
             android:layout_column="0" />
         <EditText
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:id="@+id/commentEdit"
             android:layout_gravity="end"
-            android:layout_row="13"
+            android:layout_row="15"
             android:layout_column="1" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#0066ff"
+            android:background="#5cafc8"
             android:onClick="onClick"
             android:text="Enter"
+            android:color="#000000"
             android:id="@+id/infoButton"
             android:layout_gravity="end"
-            android:layout_row="14"
+            android:layout_row="16"
             android:layout_column="1" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#0066ff"
+            android:background="#5cafc8"
+            android:color="#000000"
             android:text="Cancel"
             android:onClick="onClick"
             android:id="@+id/cancel"
-            android:layout_row="14"
+            android:layout_row="16"
             android:layout_column="0" />
     </GridLayout>
 </ScrollView>
