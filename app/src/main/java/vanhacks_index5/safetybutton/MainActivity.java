@@ -1,6 +1,8 @@
 package vanhacks_index5.safetybutton;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +38,20 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Log.v(TAG, "Token found.");
         }
+
+        b.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if(!isNetworkConnected()){
+                    sendSMS("6044499444","Please call 911");
+                }
+            }
+        });
+    }
+    private boolean isNetworkConnected(){
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
     }
 
     private void sendSMS(String phoneNumber, String message) {
@@ -46,10 +62,9 @@ public class MainActivity extends AppCompatActivity {
             sms.sendTextMessage(phoneNumber, null, message, null, null);
             Toast.makeText(getApplicationContext(), "SMS sent.", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "SMS faild, please try again.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "SMS failed, please try again.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-
     }
 
     @Override
