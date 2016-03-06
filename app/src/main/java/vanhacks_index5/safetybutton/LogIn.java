@@ -96,7 +96,7 @@ public class LogIn extends AppCompatActivity {
                             Toast.LENGTH_LONG
                     ).show();
                     errorFlag = true;
-                } else if (checkEmail(email.getText().toString())) {
+                } else if (!checkEmail(email.getText().toString())) {
                     Toast.makeText(
                             getApplicationContext(),
                             "Must use a valid email!",
@@ -151,6 +151,7 @@ public class LogIn extends AppCompatActivity {
         // We only add the name field if this is a registration
         if (isRegistration) {
             formBodyBuilder.add("name", name.getText().toString());
+            formBodyBuilder.add("number", number.getText().toString());
         }
 
         FormBody formBody = formBodyBuilder.build();
@@ -170,8 +171,12 @@ public class LogIn extends AppCompatActivity {
             JSONObject jsonObj;
             jsonObj = new JSONObject(s);
             String token = jsonObj.getString("remember_token");
+            String UserID = jsonObj.getString("id");
+            String Number = jsonObj.getString("number");
 
             PreferencesManager.getInstance().setToken(token);
+            PreferencesManager.getInstance().setUserID(UserID);
+            PreferencesManager.getInstance().setNumber(Number);
 
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);

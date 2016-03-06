@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private Button b;
 
     private static final String TAG = "MainActivity";
+    private static MqttConnection mqttConnection;
+    private static PreferencesManager preferencesManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,10 @@ public class MainActivity extends AppCompatActivity {
         b = (Button) findViewById(R.id.button);
 
         PreferencesManager.initializeInstance(getApplicationContext());
-        PreferencesManager preferencesManager = PreferencesManager.getInstance();
+        preferencesManager = PreferencesManager.getInstance();
+        MqttConnection.initializeInstance(getApplicationContext());
+        mqttConnection = MqttConnection.getInstance();
+
         if (preferencesManager.getToken().equals("")) {
             Log.v(TAG, "No token, directing to Login.");
             Intent intent = new Intent(this, LogIn.class);
@@ -39,16 +44,22 @@ public class MainActivity extends AppCompatActivity {
             Log.v(TAG, "Token found.");
         }
 
-        b.setOnClickListener(new View.OnClickListener(){
+        b.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                if(!isNetworkConnected()){
-                    sendSMS("6044499444","Please call 911");
+            public void onClick(View v) {
+                if (!isNetworkConnected()) {
+                    sendSMS("6044499444", "Please call 911");
+                } else {
+                    System.out.println("Connection exists");
+                    String thisUserID = preferencesManager.getUserID();
+                    String thisNumber = preferencesManager.getNumber();
+                    mqttConnection.publish(thisUserID + "|" + thisNumber);
                 }
             }
         });
     }
-    private boolean isNetworkConnected(){
+
+    private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         return cm.getActiveNetworkInfo() != null;

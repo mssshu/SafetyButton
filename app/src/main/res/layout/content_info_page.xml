@@ -179,7 +179,7 @@
                 android:id="@+id/weaponsEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Weapons:"
+                android:hint="Weapons"
                 android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
