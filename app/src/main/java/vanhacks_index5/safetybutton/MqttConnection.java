@@ -81,4 +81,23 @@ public class MqttConnection {
         return true;
     }
 
+    /**
+     * Takes in a string like "UserID|long|lat"
+     * example: "35|23.567778767|45.84859693"
+     * @param gpsContent
+     * @return
+     */
+    public boolean publishGPS(String gpsContent) {
+        System.out.println("Publishing GPS: ");
+        MqttMessage message = new MqttMessage(gpsContent.getBytes());
+        message.setQos(2);
+        try {
+            client.publish("GPSChannel", message);
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+        System.out.println("GPS Message published");
+        return true;
+    }
+
 }

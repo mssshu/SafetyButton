@@ -10,6 +10,7 @@ public class PreferencesManager {
     private static final String KEY_TOKEN = "remember_token";
     private static final String KEY_USERID = "user_id";
     private static final String KEY_NUMBER = "number";
+    private static final String KEY_NAME = "name";
 
     private static PreferencesManager sInstance;
     private final SharedPreferences mPref;
@@ -63,6 +64,17 @@ public class PreferencesManager {
 
     public String getNumber() {
         return mPref.getString(KEY_NUMBER, "");
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    public void setName(String value) {
+        mPref.edit()
+                .putString(KEY_NAME, value)
+                .commit();
+    }
+
+    public String getName() {
+        return mPref.getString(KEY_NAME, "");
     }
 
     @SuppressLint("CommitPrefEdits")

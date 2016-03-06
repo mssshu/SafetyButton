@@ -62,7 +62,7 @@ public class InfoPage extends AppCompatActivity {
                 break;
             }
             case R.id.cancel: {
-                final Intent i = new Intent(this, LogIn.class);
+                final Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
                 break;
             }
@@ -87,7 +87,7 @@ public class InfoPage extends AppCompatActivity {
 
     public void run() throws Exception {
         RequestBody formBody = new FormBody.Builder()
-                .add("User_ID", "1")
+                .add("User_ID", PreferencesManager.getInstance().getUserID())
                 .add("Name", nameEdit.getText().toString())
                 .add("Home_Address", homeAddressEdit.getText().toString())
                 .add("Work_Address", workAddressEdit.getText().toString())
@@ -105,7 +105,7 @@ public class InfoPage extends AppCompatActivity {
 
 
         Request request = new Request.Builder()
-                .url("http://199.116.240.37/api/userinfos?token=" + PreferencesManager.getInstance().getToken())
+                .url("http://199.116.240.37/api/userinfos?token=" + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzE5OS4xMTYuMjQwLjM3XC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ1NzIzOTY3MCwiZXhwIjoxNDg4Nzc1NjcwLCJuYmYiOjE0NTcyMzk2NzAsImp0aSI6IjM1YTA3MGVkY2Y4MTI4N2VmNTM0ZDNhZGZlMTE4ZGZhIn0.IVGIOPLwUmVErU2V5QM51v0OvsgKA4lEqUEZCvzXx0A")
                 .post(formBody)
                 .build();
 
