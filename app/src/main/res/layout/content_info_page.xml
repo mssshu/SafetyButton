@@ -124,7 +124,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Children Names"
-                android:inputType="text" />
+                android:inputType="textMultiLine" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:id="@+id/legalOrders"
@@ -180,7 +180,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Weapons"
-                android:inputType="text" />
+                android:inputType="textMultiLine" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:id="@+id/threats"
@@ -194,7 +194,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Threats Made"
-                android:inputType="text" />
+                android:inputType="textMultiLine" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:id="@+id/comment"
@@ -208,7 +208,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Comments"
-                android:inputType="text" />
+                android:inputType="textMultiLine" />
         </android.support.design.widget.TextInputLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -222,13 +222,14 @@
             android:text="Enter"
             android:color="#000000"
             android:id="@+id/infoButton"
-            android:layout_gravity="end" />
+            android:layout_marginStart="50dp" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#5cafc8"
             android:color="#000000"
-            android:layout_gravity="end"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="15dp"
             android:text="Cancel"
             android:onClick="onClick"
             android:id="@+id/cancel" />

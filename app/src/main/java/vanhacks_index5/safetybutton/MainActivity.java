@@ -3,7 +3,6 @@ package vanhacks_index5.safetybutton;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -49,11 +48,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!isNetworkConnected()) {
                     sendSMS("6044499444", "Please call 911");
+                    b.setText("Emergency Mode");
                 } else {
                     System.out.println("Connection exists");
                     String thisUserID = preferencesManager.getUserID();
                     String thisNumber = preferencesManager.getNumber();
                     mqttConnection.publish(thisUserID + "|" + thisNumber);
+                    b.setText("Emergency Mode");
                 }
             }
         });
