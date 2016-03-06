@@ -1,5 +1,6 @@
 package vanhacks_index5.safetybutton;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -69,12 +70,23 @@ public class InfoPage extends AppCompatActivity {
 //            TextView textView = (TextView) findViewById(text[i]);
 //            textValues[i] = textView.toString();
 //        }
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+    }
+    public void onClick(View v){
+        switch(v.getId()){
+            case R.id.infoButton:{
                 new PostTask().execute();
+                break;
             }
-        });
+            case R.id.cancel:{
+                final Intent i = new Intent(this,LogIn.class);
+                startActivity(i);
+                break;
+            }
+            default:{
+                break;
+            }
+        }
     }
     private class PostTask extends AsyncTask<Void,Void,Void>{
 
