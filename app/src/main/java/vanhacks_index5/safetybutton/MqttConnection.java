@@ -121,6 +121,7 @@ public class MqttConnection implements MqttCallback {
         if (messageArray[0].equals(PreferencesManager.getInstance().getUserID())) {
             System.out.println("This device has been resolved.");
             MainActivity.b.setEnabled(true);
+            MainActivity.b.setText("Alert");
         }
     }
 
