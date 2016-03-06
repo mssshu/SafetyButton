@@ -34,8 +34,10 @@ public class LogIn extends AppCompatActivity {
     private EditText email;
     private EditText pass;
     private EditText number;
+    private EditText emergencyCode;
     private TextView loginText;
     private TextInputLayout nameLabel;
+    private TextInputLayout emergencyCodeLabel;
     private Button submit;
 
     // REGEX to confirm valid email address, thanks K9mail
@@ -69,6 +71,8 @@ public class LogIn extends AppCompatActivity {
         email = (EditText) findViewById(R.id.input_email);
         pass = (EditText) findViewById(R.id.input_password);
         number = (EditText) findViewById(R.id.input_number);
+        emergencyCode = (EditText) findViewById(R.id.input_emergencyCode);
+        emergencyCodeLabel = (TextInputLayout) findViewById(R.id.emergencyCode_label);
         loginText = (TextView) findViewById(R.id.link_login);
 
         submit = (Button) findViewById(R.id.btn_signup);
@@ -86,6 +90,13 @@ public class LogIn extends AppCompatActivity {
                     Toast.makeText(
                             getApplicationContext(),
                             "You must enter an email address.",
+                            Toast.LENGTH_LONG
+                    ).show();
+                    errorFlag = true;
+                } else if (emergencyCode.getText().toString().equals("")) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "You must enter a short emergency codeword.",
                             Toast.LENGTH_LONG
                     ).show();
                     errorFlag = true;
@@ -115,6 +126,8 @@ public class LogIn extends AppCompatActivity {
                 name.setHint("");
                 name.setVisibility(View.INVISIBLE);
                 nameLabel.setVisibility(View.INVISIBLE);
+                emergencyCode.setVisibility(View.INVISIBLE);
+                emergencyCodeLabel.setVisibility(View.INVISIBLE);
                 submit.setText("Login");
                 loginText.setVisibility(View.INVISIBLE);
                 isRegistration = false;
@@ -152,6 +165,7 @@ public class LogIn extends AppCompatActivity {
         if (isRegistration) {
             formBodyBuilder.add("name", name.getText().toString());
             formBodyBuilder.add("number", number.getText().toString());
+            formBodyBuilder.add("emergency_code", emergencyCode.getText().toString());
         }
 
         FormBody formBody = formBodyBuilder.build();
