@@ -26,4 +26,6 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile files('libs/org.eclipse.paho.client.mqttv3-1.0.2.jar')
+    compile files('libs/org.eclipse.paho.android.service-1.0.3-SNAPSHOT.jar')
 }

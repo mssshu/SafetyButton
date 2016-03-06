@@ -20,7 +20,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="72dp"
+            android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
             android:text="SafetyButton"
@@ -86,6 +86,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Name"
+                android:inputType="textCapWords" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!--  Emergency Code Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/emergencyCode_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/input_emergencyCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Emergency Secret Codeword"
                 android:inputType="textCapWords" />
         </android.support.design.widget.TextInputLayout>
 

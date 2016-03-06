@@ -2,12 +2,10 @@ package vanhacks_index5.safetybutton;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
@@ -34,8 +32,10 @@ public class LogIn extends AppCompatActivity {
     private EditText email;
     private EditText pass;
     private EditText number;
+    private EditText emergencyCode;
     private TextView loginText;
     private TextInputLayout nameLabel;
+    private TextInputLayout emergencyCodeLabel;
     private Button submit;
 
     // REGEX to confirm valid email address, thanks K9mail
@@ -69,6 +69,8 @@ public class LogIn extends AppCompatActivity {
         email = (EditText) findViewById(R.id.input_email);
         pass = (EditText) findViewById(R.id.input_password);
         number = (EditText) findViewById(R.id.input_number);
+        emergencyCode = (EditText) findViewById(R.id.input_emergencyCode);
+        emergencyCodeLabel = (TextInputLayout) findViewById(R.id.emergencyCode_label);
         loginText = (TextView) findViewById(R.id.link_login);
 
         submit = (Button) findViewById(R.id.btn_signup);
@@ -89,6 +91,13 @@ public class LogIn extends AppCompatActivity {
                             Toast.LENGTH_LONG
                     ).show();
                     errorFlag = true;
+                } else if (emergencyCode.getText().toString().equals("")) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "You must enter a short emergency codeword.",
+                            Toast.LENGTH_LONG
+                    ).show();
+                    errorFlag = true;
                 } else if (pass.getText().toString().equals("")) {
                     Toast.makeText(
                             getApplicationContext(),
@@ -96,7 +105,7 @@ public class LogIn extends AppCompatActivity {
                             Toast.LENGTH_LONG
                     ).show();
                     errorFlag = true;
-                } else if (checkEmail(email.getText().toString())) {
+                } else if (!checkEmail(email.getText().toString())) {
                     Toast.makeText(
                             getApplicationContext(),
                             "Must use a valid email!",
@@ -115,6 +124,8 @@ public class LogIn extends AppCompatActivity {
                 name.setHint("");
                 name.setVisibility(View.INVISIBLE);
                 nameLabel.setVisibility(View.INVISIBLE);
+                emergencyCode.setVisibility(View.INVISIBLE);
+                emergencyCodeLabel.setVisibility(View.INVISIBLE);
                 submit.setText("Login");
                 loginText.setVisibility(View.INVISIBLE);
                 isRegistration = false;
@@ -151,6 +162,8 @@ public class LogIn extends AppCompatActivity {
         // We only add the name field if this is a registration
         if (isRegistration) {
             formBodyBuilder.add("name", name.getText().toString());
+            formBodyBuilder.add("number", number.getText().toString());
+            formBodyBuilder.add("emergency_code", emergencyCode.getText().toString());
         }
 
         FormBody formBody = formBodyBuilder.build();
@@ -170,8 +183,14 @@ public class LogIn extends AppCompatActivity {
             JSONObject jsonObj;
             jsonObj = new JSONObject(s);
             String token = jsonObj.getString("remember_token");
+            String name = jsonObj.getString("name");
+            String UserID = jsonObj.getString("id");
+            String Number = jsonObj.getString("number");
 
             PreferencesManager.getInstance().setToken(token);
+            PreferencesManager.getInstance().setName(name);
+            PreferencesManager.getInstance().setUserID(UserID);
+            PreferencesManager.getInstance().setNumber(Number);
 
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
