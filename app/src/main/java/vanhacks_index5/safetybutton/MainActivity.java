@@ -3,7 +3,6 @@ package vanhacks_index5.safetybutton;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private Button b;
 
     private static final String TAG = "MainActivity";
+    private static MqttConnection mqttConnection;
+    private static PreferencesManager preferencesManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,10 @@ public class MainActivity extends AppCompatActivity {
         b = (Button) findViewById(R.id.button);
 
         PreferencesManager.initializeInstance(getApplicationContext());
-        PreferencesManager preferencesManager = PreferencesManager.getInstance();
+        preferencesManager = PreferencesManager.getInstance();
+        MqttConnection.initializeInstance(getApplicationContext());
+        mqttConnection = MqttConnection.getInstance();
+
         if (preferencesManager.getToken().equals("")) {
             Log.v(TAG, "No token, directing to Login.");
             Intent intent = new Intent(this, LogIn.class);
@@ -39,16 +43,24 @@ public class MainActivity extends AppCompatActivity {
             Log.v(TAG, "Token found.");
         }
 
-        b.setOnClickListener(new View.OnClickListener(){
+        b.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                if(!isNetworkConnected()){
-                    sendSMS("6044499444","Please call 911");
+            public void onClick(View v) {
+                if (!isNetworkConnected()) {
+                    sendSMS("6044499444", "Please call 911");
+                    b.setText("Emergency Mode");
+                } else {
+                    System.out.println("Connection exists");
+                    String thisUserID = preferencesManager.getUserID();
+                    String thisNumber = preferencesManager.getNumber();
+                    mqttConnection.publish(thisUserID + "|" + thisNumber);
+                    b.setText("Emergency Mode");
                 }
             }
         });
     }
-    private boolean isNetworkConnected(){
+
+    private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         return cm.getActiveNetworkInfo() != null;
