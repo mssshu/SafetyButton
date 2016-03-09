@@ -13,7 +13,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 /**
- * Created by Luda on 2016-03-05.
+ * Created by Curtis on 2016-03-05.
  */
 public class MqttConnection implements MqttCallback {
 
