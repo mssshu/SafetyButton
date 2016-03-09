@@ -4,13 +4,10 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -39,16 +36,7 @@ public class LocationActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         //build googleapiclient
         if (mGoogleApiClient == null) {
@@ -58,11 +46,9 @@ public class LocationActivity extends AppCompatActivity
                     .addApi(LocationServices.API)
                     .build();
         }
-
         //textview
         txtLat = (TextView) findViewById(R.id.txtLat);
         txtLng = (TextView) findViewById(R.id.txtLng);
-
     }
 
     @Override
@@ -112,5 +98,7 @@ public class LocationActivity extends AppCompatActivity
     public void onLocationChanged(Location location) {
         txtLat.setText(location.getLatitude() + "");
         txtLng.setText(location.getLongitude() + "");
+
+
     }
 }
